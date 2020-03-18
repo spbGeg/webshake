@@ -1,73 +1,71 @@
 <?php
 
+interface calculateSquare {
+    public function calculateSquare();
+}
 
-class Post
+
+class Rectangle
 {
-    protected $title;
-    protected $text;
+    private $x;
+    private $y;
 
-    public function __construct($title, $text){
-        $this->title = $title;
-        $this->text = $text;
-    }
-    public function setTitle($title){
-        $this->title = $title;
-
-    }
-    public function getTitle(){
-        return $this->title;
+    public function __construct($x, $y){
+        $this->x = $x;
+        $this->y = $y;
     }
 
-    public function setText($text){
-        $this->text = $text;
-    }
-    public function getText(){
-        return $this->text;
+    public function calculateSquare(){
+        return $this->x * $this->y;
+
     }
 }
 
-class Lesson extends Post
+class Square implements calculateSquare
 {
+    private $x;
 
-    private $homework;
+    public function __construct($x){
+        $this->x = $x;
+    }
+    public function calculateSquare(){
+        return $this->x **2;
+    }
+}
 
-    public function __construct($title, $text, $homework){
-       parent:: __construct($title,$text);
-        $this->homework = $homework;
+class Circle implements calculateSquare
+{
+    const PI =  3.14;
+    private $r;
+
+
+    public function __construct($r){
+        $this->r = $r;
     }
 
-    public function getHomework(){
-        return $this->homework;
+    public function calculateSquare(){
+
+        return self::PI * ( $this->r ** 2);
     }
-    public function setHomework($homework){
-        $this->homework = $homework;
-    }
+}
 
-    }
+$circle = new Circle(2.5);
 
 
-    class PaidLesson extends Lesson
-    {
-        private $price;
-
-        public function __construct($title, $text, $homework, $price){
-            parent::__construct($title, $text, $homework);
-            $this->price = $price;
-        }
-
-        public function getPrice(){
-            return $this->price;
-        }
-        public function setPrice($price){
-            $this->price = $price;
-        }
+$objects = [
+  new Square(5),
+    new Rectangle(2,4),
+    new Circle (5)
+];
 
 
-    }
-$lesson = new Lesson('Заголовок', 'Текст', "Домашка");
-//echo 'Название урока: ' . $lesson ->getTitle();
-var_dump($lesson);
+foreach($objects as $object){
+    if($object instanceof CalculateSquare){
+        echo 'Объект реализует интерфейс CalculateSquqre. Площадь: ' . $object->calculateSquare();
+        echo "<br/>";
+    }else echo 'Объект класса ' .  get_class($object) . ' не реализует интерфейс CalculateSquare<br/>';
+}
 
 
-$paid_lesson = new PaidLesson('Урок о налследовании PHP' , 'Лол кек, чебурек ' , 'Ложитесь спать утро вечера мудренеее', '99.00');
-var_dump($paid_lesson);
+
+//var_dump($circle instanceof CalculateSquare);
