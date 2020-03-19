@@ -1,77 +1,19 @@
 <?php
 
-
-class User
-{
-    private $name;
-    private $role;
-
-    public function __construct($name, $role)
-    {
-        $this->name = $name;
-        $this->role = $role;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
+//require_once __DIR__ . '/src/MyProject/Models/Users/User.php';
+//require_once __DIR__ . '/src/MyProject/Models/Articles/Article.php';
+function myAutoLoader(string $className){
+    //var_dump($className);
+    require_once __DIR__ . '/src/' . $className . '.php';
 }
 
-class Cat
-{
-    private $name;
-
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-}
-
-class Admin extends User
-{
-
-}
-
-class Article
-{
-    private $title;
-    private $text;
-    private $author;
-
-    public function __construct(string $title, string $text, User $author){
-        $this->title = $title;
-        $this->text = $text;
-        $this->author = $author;
-    }
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getAuthor(): User
-    {
-        return $this->author;
-    }
+spl_autoload_register('myAutoLoader');
 
 
-}
 
 
-$author = new Admin('Nike', 'admin');
-$author2 = new Cat('Барсик');
-$article = new Article('Заголово', 'Текст', $author);
+$author = new MyProject\Models\Users\User('Nike', 'admin');
+$article = new MyProject\Models\Articles\Article('Заголово', 'Текст', $author);
 echo 'Имя автора ' . $article->getAuthor()->getName();
 //var_dump($article);
 
