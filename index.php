@@ -1,31 +1,32 @@
 <?php
 
-trait SayYourClassTrait
+class A
 {
-    public function SayYourClass(){
-        return 'My class is ' . self::class;
+    public function sayHello(){
+        return'Hello, I am A';
+    }
+
+    public function method1(){
+return $this->method2();
+    }
+    protected function method2(){
+        return 'A';
+    }
+
+}
+
+
+
+class B extends A
+{
+    protected function method2(){
+        return 'B';
     }
 }
 
-interface ISayYourClass{
-    public function SayYourClass();
-}
-
-class Man implements ISayYourClass
-{
-    use SayYourClassTrait;
-}
-
-class Box implements ISayYourClass
-{
-    public function SayYourClass(){
-        return 'My class is ' . self::class;
-    }
-}
 
 
-$man = new Man();
-$box = new Box();
-echo $man->SayYourClass();
-echo "<br/>";
-echo $box->SayYourClass();
+$a = new A();
+$b = new B();
+echo $b->method1();
+//var_dump($a instanceof B);
