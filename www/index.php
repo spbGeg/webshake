@@ -10,7 +10,11 @@ spl_autoload_register('myAutoLoader');
 
 
 $controller = new \MyProject\Controllers\MainController();
-$controller->main();
+
+if(!empty($_GET['name'])){
+    $controller->sayHello($_GET['name']);
+}else $controller->main();
+
 $author = new MyProject\Models\Users\User('Nike', 'admin');
 $article = new MyProject\Models\Articles\Article('Заголово', 'Текст', $author);
 //echo 'Имя автора ' . $article->getAuthor()->getName();

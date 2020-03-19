@@ -15,5 +15,9 @@ class MainController
     {
         echo 'Главная станица';
     }
+    public function sayHello(string $name)
+    {
+        echo 'Привет, ' . $name;
+    }
 
 }
