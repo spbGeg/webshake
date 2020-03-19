@@ -1,32 +1,72 @@
 <?php
 
-class A
+abstract class HumanAbstruct
 {
-    public function sayHello(){
-        return'Hello, I am A';
+    private $name;
+
+    public function __construct($name)
+    {
+        $this->name = $name;
     }
 
-    public function method1(){
-return $this->method2();
+    public function getName()
+    {
+        return $this->name;
     }
-    protected function method2(){
-        return 'A';
+
+    abstract public function getGreetengs();
+
+    abstract public function getMyNameIs();
+
+    public function introduceYourself()
+    {
+        return $this->getGreetengs() . '! ' . $this->getMyNameIs() . ' ' . $this->getName() . '.';
+    }
+
+
+}
+
+class RussianHuman extends HumanAbstruct
+{
+    public function __construct($name)
+    {
+        parent::__construct($name);
+    }
+
+    public function getGreetengs(){
+        return 'Здравствуйте';
+    }
+
+    public function getMyNameIs(){
+        return 'Мое имя';
     }
 
 }
 
-
-
-class B extends A
+class EnglishHuman extends HumanAbstruct
 {
-    protected function method2(){
-        return 'B';
+    public function __construct($name){
+        parent:: __construct($name);
+    }
+
+    public function getGreetengs()
+    {
+        // TODO: Implement getGreetengs() method.
+        return "Hello";
+    }
+    public function getMyNameIs()
+    {
+        // TODO: Implement getMyNameIs() method.
+
+    return 'My name is';
     }
 }
 
 
+$russian_human = new RussianHuman("Иван");
+echo $russian_human->introduceYourself();
 
-$a = new A();
-$b = new B();
-echo $b->method1();
-//var_dump($a instanceof B);
+echo "<br/>";
+$english_human = new EnglishHuman('Harry');
+echo $english_human->introduceYourself();
+
