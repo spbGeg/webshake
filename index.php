@@ -1,10 +1,28 @@
 <?php
 
-abstract class HumanAbstruct
+
+class User
+{
+    private $name;
+    private $role;
+
+    public function __construct($name, $role)
+    {
+        $this->name = $name;
+        $this->role = $role;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+}
+
+class Cat
 {
     private $name;
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
@@ -14,59 +32,46 @@ abstract class HumanAbstruct
         return $this->name;
     }
 
-    abstract public function getGreetengs();
-
-    abstract public function getMyNameIs();
-
-    public function introduceYourself()
-    {
-        return $this->getGreetengs() . '! ' . $this->getMyNameIs() . ' ' . $this->getName() . '.';
-    }
-
-
 }
 
-class RussianHuman extends HumanAbstruct
+class Admin extends User
 {
-    public function __construct($name)
-    {
-        parent::__construct($name);
-    }
-
-    public function getGreetengs(){
-        return 'Здравствуйте';
-    }
-
-    public function getMyNameIs(){
-        return 'Мое имя';
-    }
 
 }
 
-class EnglishHuman extends HumanAbstruct
+class Article
 {
-    public function __construct($name){
-        parent:: __construct($name);
+    private $title;
+    private $text;
+    private $author;
+
+    public function __construct(string $title, string $text, User $author){
+        $this->title = $title;
+        $this->text = $text;
+        $this->author = $author;
+    }
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
-    public function getGreetengs()
+    public function getText(): string
     {
-        // TODO: Implement getGreetengs() method.
-        return "Hello";
+        return $this->text;
     }
-    public function getMyNameIs()
-    {
-        // TODO: Implement getMyNameIs() method.
 
-    return 'My name is';
+    public function getAuthor(): User
+    {
+        return $this->author;
     }
+
+
 }
 
 
-$russian_human = new RussianHuman("Иван");
-echo $russian_human->introduceYourself();
-
-echo "<br/>";
-$english_human = new EnglishHuman('Harry');
-echo $english_human->introduceYourself();
+$author = new Admin('Nike', 'admin');
+$author2 = new Cat('Барсик');
+$article = new Article('Заголово', 'Текст', $author);
+echo 'Имя автора ' . $article->getAuthor()->getName();
+//var_dump($article);
 
