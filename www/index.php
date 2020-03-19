@@ -7,7 +7,7 @@ function myAutoLoader(string $className){
 
 spl_autoload_register('myAutoLoader');
 
-
+print_r($_GET);
 
 $controller = new \MyProject\Controllers\MainController();
 
