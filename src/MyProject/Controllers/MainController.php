@@ -7,6 +7,7 @@
  */
 
 namespace MyProject\Controllers;
+use MyProject\Services\Db;
 use MyProject\View\View;
 
 class MainController
@@ -20,14 +21,11 @@ class MainController
 
     public function main()
     {
-        $articles = [
-            ['name'=>'Статья 1', 'text'=> 'Текст статьи 1'],
-            ['name'=> 'Статья 2', 'text' => 'Текст статьи 2'],
-            ['name'=> 'Статья 3', 'text' => 'Текст статьи 3'],
-        ];
+        $articles = $this->db->query('SELECT * FROM `articles`');
+        var_dump($articles);
 
         ob_start();
-        $this->view->renderHtml( 'main/main.php', ['articles' => $articles]);
+        //g$this->view->renderHtml( 'main/main.php', ['articles' => $articles]);
         $buffer = ob_get_contents();
         ob_end_clean();
 
