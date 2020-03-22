@@ -26,17 +26,30 @@ class MainController
             ['name'=> 'Статья 3', 'text' => 'Текст статьи 3'],
         ];
 
+        ob_start();
         $this->view->renderHtml( 'main/main.php', ['articles' => $articles]);
+        $buffer = ob_get_contents();
+        ob_end_clean();
+
+        echo $buffer;
+
+//        $error = 'При подключении шаблона возникла ошибка';
+//        if(empty($error)){
+//            echo $buffer;
+//        }else {
+//            echo $error;
+//        }
+
     }
 
     public function sayHello(string $name)
     {
-        echo 'Привет, ' . $name;
+        echo $this->view->renderHtml('main/hello.php', ['name' => $name]);
     }
 
     public function sayBuy(string $name)
     {
-        echo 'Пока, ' . $name;
+        echo $this->view->renderHtml('main/buy.php', ['name' => $name]);
     }
 
 }
