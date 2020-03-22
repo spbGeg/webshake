@@ -15,13 +15,15 @@
         </td>
     </tr>
     <tr>
-        <td>
-            <h2>Статья 1</h2>
-            <p>Всем привет, это текст первой статьи</p>
-            <hr>
 
-            <h2>Статья 2</h2>
-            <p>Всем привет, это текст второй статьи</p>
+
+        <td>
+            <? foreach($articles as $article):?>
+            <h2><?=$article['name']?></h2>
+            <p><?=$article['text']?></p>
+            <hr>
+            <? endforeach;?>
+
         </td>
 
         <td width="300px" class="sidebar">
