@@ -12,33 +12,27 @@ use MyProject\View\View;
 
 class MainController
 {
+    /** @var View */
     private $view;
+
+    /** @var Db */
+    private $db;
+
 
     public function __construct()
     {
         $this->view = new View(__DIR__ . '/../../../templates');
+        $this->db = new Db();
     }
 
     public function main()
     {
-        $articles = $this->db->query('SELECT * FROM `articles`');
+        $articles = $this->db->query('SELECT * FROM `articles`;');
         var_dump($articles);
-
-        ob_start();
-        //g$this->view->renderHtml( 'main/main.php', ['articles' => $articles]);
-        $buffer = ob_get_contents();
-        ob_end_clean();
-
-        echo $buffer;
-
-//        $error = 'При подключении шаблона возникла ошибка';
-//        if(empty($error)){
-//            echo $buffer;
-//        }else {
-//            echo $error;
-//        }
-
+        //$this->view->renderHtml('main/main.php', ['articles' => $articles]);
     }
+
+
 
     public function sayHello(string $name)
     {
