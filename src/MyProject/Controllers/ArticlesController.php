@@ -25,6 +25,8 @@ class ArticlesController
         $this->db = new Db();
     }
 
+
+
     public function view(int $articleId)
     {
         $result = $this->db->query(
@@ -33,7 +35,7 @@ class ArticlesController
         );
 
         if($result === []){
-           $this->view->renderHtml('errors/404.php');
+           $this->view->renderHtml('errors/404.php', [], 404);
             return;
         }
 

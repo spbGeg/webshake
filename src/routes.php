@@ -9,6 +9,6 @@
 return[
     '~^hello/(.*)$~' => [\MyProject\Controllers\MainController::class, 'sayHello'],
     '~^buy/(.*)$~' => [\MyProject\Controllers\MainController::class, 'sayBuy'],
-    '~^atricles/(\d+)$~' => [\MyProject\Controllers\ArticlesController::class, 'view'],
+    '~^articles/(\d+)$~' => [\MyProject\Controllers\ArticlesController::class, 'view'],
     '~^$~' => [\MyProject\Controllers\MainController::class, 'main'],
 ];
