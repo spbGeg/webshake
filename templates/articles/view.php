@@ -9,4 +9,7 @@
 include __DIR__ .'/../header.php'; ?>
 <h1><?= $article['name'] ?></h1>
 <p><?= $article['text'] ?></p>
+<p><b>Автор <?= $article['nickname'] ?></b></p></p>
+
+<? var_dump($article) ?>
 <? include __DIR__ .'/../footer.php'; ?>

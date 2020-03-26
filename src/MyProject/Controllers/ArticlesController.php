@@ -30,7 +30,7 @@ class ArticlesController
     public function view(int $articleId)
     {
         $result = $this->db->query(
-            'SELECT * FROM `articles` WHERE id = :id;',
+            'SELECT * FROM `articles` WHERE articles.id = :id ;',
             [':id' => $articleId]
         );
 

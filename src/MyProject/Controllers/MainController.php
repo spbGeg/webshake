@@ -27,7 +27,7 @@ class MainController
 
     public function main()
     {
-        $articles = $this->db->query('SELECT * FROM `articles`;');
+        $articles = $this->db->query('SELECT * FROM `articles`, `users` WHERE users.id = articles.author_id;');
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
     }
 
