@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 24 2020 г., 18:37
--- Версия сервера: 5.7.20
--- Версия PHP: 7.1.12
+-- Время создания: Апр 12 2020 г., 18:54
+-- Версия сервера: 8.0.15
+-- Версия PHP: 7.1.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,18 +31,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `articles` (
   `id` int(11) UNSIGNED NOT NULL,
   `author_id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `text` text CHARACTER SET utf8 NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `text` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `articles`
 --
 
-INSERT INTO `articles` (`id`, `author_id`, `name`, `text`, `create_at`) VALUES
-(1, 1, 'Статья о том, как я погулял', 'Шёл я значит по тротуару, как вдруг...', '2020-03-22 19:17:17'),
-(2, 1, 'Пост о жизни', 'Сидел я тут на кухне с друганом и тут он задал такой вопрос...', '2020-03-22 19:17:17');
+INSERT INTO `articles` (`id`, `author_id`, `name`, `text`) VALUES
+(1, 1, 'Статья о том, как я погулял', 'Шёл я значит по тротуару, как вдруг...'),
+(2, 1, 'Пост о жизни', 'Сидел я тут на кухне с друганом и тут он задал такой вопрос...');
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,9 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `nickname`, `email`, `is_confirmed`, `role`, `password_hash`, `auth_token`, `created_at`) VALUES
-(1, 'admin', 'admin@mail.ru', 1, 'admin', 'hash1', 'token', '2020-03-22 19:07:05'),
-(2, 'user', 'user@gmail.com', 1, 'user', 'hash2', 'token2', '2020-03-22 19:10:47');
+INSERT INTO `users` (`id`, `nickname`, `email`, `is_confirmed`, `role`, `password_hash`, `auth_token`) VALUES
+(1, 'admin', 'admin@mail.ru', 1, 'admin', 'hash1', 'token'),
+(2, 'user', 'user@gmail.com', 1, 'user', 'hash2', 'token2');
 
 --
 -- Индексы сохранённых таблиц
