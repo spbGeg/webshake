@@ -1,27 +1,42 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: market7
- * Date: 19.03.2020
- * Time: 12:19
- */
 
 namespace MyProject\Models\Users;
 
+use MyProject\Models\ActiveRecordEntity;
 
-class User
+class User extends ActiveRecordEntity
 {
-    private $name;
-    private $role;
+    /** @var string */
+    protected $nickname;
 
-    public function __construct($name, $role)
+    /** @var string */
+    protected $email;
+
+    /** @var int */
+    protected $isConfirmed;
+
+    /** @var string */
+    protected $role;
+
+    /** @var string */
+    protected $passwordHash;
+
+    /** @var string */
+    protected $authToken;
+
+    /** @var string */
+    protected $createdAt;
+
+    /**
+     * @return string
+     */
+    public function getNickname(): string
     {
-        $this->name = $name;
-        $this->role = $role;
+        return $this->nickname;
     }
 
-    public function getName()
+    protected static function getTableName(): string
     {
-        return $this->name;
+        return 'users';
     }
 }
