@@ -1,40 +1,41 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: market7
- * Date: 19.03.2020
- * Time: 12:19
- */
-
 
 namespace MyProject\Models\Articles;
-use MyProject\Models\Users\User;
 
-class Article
+use MyProject\Models\ActiveRecordEntity;
+
+class Article extends ActiveRecordEntity
 {
-    private $title;
-    private $text;
-    private $author;
+    /** @var string */
+    protected $name;
 
-    public function __construct(string $title, string $text, User $author){
-        $this->title = $title;
-        $this->text = $text;
-        $this->author = $author;
-    }
-    public function getTitle(): string
+    /** @var string */
+    protected $text;
+
+    /** @var string */
+    protected $authorId;
+
+    /** @var string */
+    protected $createdAt;
+
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
-        return $this->title;
+        return $this->name;
     }
 
+    /**
+     * @return string
+     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    public function getAuthor(): User
+    protected static function getTableName(): string
     {
-        return $this->author;
+        return 'articles';
     }
-
-
 }
