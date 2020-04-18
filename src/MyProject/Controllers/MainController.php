@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: market7
- * Date: 19.03.2020
- * Time: 13:56
- */
 
 namespace MyProject\Controllers;
+
+use MyProject\Models\Articles\Article;
 use MyProject\Services\Db;
 use MyProject\View\View;
 
@@ -18,7 +14,6 @@ class MainController
     /** @var Db */
     private $db;
 
-
     public function __construct()
     {
         $this->view = new View(__DIR__ . '/../../../templates');
@@ -27,13 +22,15 @@ class MainController
 
     public function main()
     {
-        $articles = $this->db->query('SELECT * FROM `articles`;');
+        $articles = $this->db->query('SELECT * FROM `articles`;', [], Article::class);
+
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
     }
 
 
 
-    public function sayHello(string $name)
+
+public function sayHello(string $name)
     {
         echo $this->view->renderHtml('main/hello.php', ['name' => $name]);
     }

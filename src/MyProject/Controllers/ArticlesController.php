@@ -8,6 +8,7 @@
 
 namespace MyProject\Controllers;
 
+use MyProject\Models\Articles\Article;
 use MyProject\Services\Db;
 use MyProject\View\View;
 
@@ -30,7 +31,7 @@ class ArticlesController
     public function view(int $articleId)
     {
         $result = $this->db->query(
-            'SELECT * FROM `articles` WHERE id = :id;',
+            'SELECT * FROM `articles` WHERE id = :id;', [], Article::class,
             [':id' => $articleId]
         );
 
